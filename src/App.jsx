@@ -72,12 +72,12 @@ function App() {
       { SECTIONS.LOGIN === section && 
       
       
-        <section className='form-login text-center h-min'>
-        <img src={gck} width="240pt" height="120pt" />
+        <section className='form-login text-center h-min '>
+        <img src={gck} className=' mx-auto' width="240pt" height="120pt" />
 
         
-        <h5 className='py-2 text-lg text-white w-full text-center' >CIMENTERIE - 水泥车间</h5>
-        <form onSubmit={onLogin} className='w-[465px]'>
+        <h5 className='py-2 text-lg text-white min-w-max text-center' >CIMENTERIE - 水泥车间</h5>
+        <form onSubmit={onLogin} className='max-w-[465px]'>
           <div>
             <input value={phone} onChange={e =>  {setLoginError(false); setPhone(e.target.value); }} className={classes.clFormTextInput} type='phone' placeholder='phone number ...' />
           </div>
@@ -85,12 +85,12 @@ function App() {
             <input value={pwd} onChange={e => { setLoginError(false); setPwd(e.target.value);}} className={classes.clFormTextInput} type='password' />
           </div>
 
-          { !loginError && <p className='text-gray-100 text-sm py-4'>
+          { !loginError && <p className='text-gray-100 text-sm py-4 break-words text-center marginx-auto mx-auto w-1/2'>
             Veuillez vous connecter avec votre numero de telephone et mot de passe
           </p> }
 
           { loginError && 
-            <p className='text-sm p-2 rounded-md bg-red-500 text-white w-full mb-2'>
+            <p className='text-sm p-2 rounded-md bg-red-500 text-white w-min break-words mb-2'>
               Erreur de connection veuillez inserer votre "username" et votre "mot de passe" correctement. Verifier votre clavier pour les majuscules. 
             </p>
           }
@@ -98,7 +98,7 @@ function App() {
          
 
           <div>
-            <button disabled={phone.length < 9 || pwd.length < 6} onClick={onLogin} className='hover:bg-blue-600 disabled:text-gray-400 disabled:bg-slate-300 text-center bg-blue-700 text-white p-2 rounded-md w-full' type='submit'>Se connecter</button> 
+            <button disabled={phone.length < 9 || pwd.length < 6} onClick={onLogin} className='hover:bg-blue-600 disabled:text-gray-400 disabled:bg-slate-300 text-center bg-blue-700 text-white p-2 rounded-md w-min min-w-[300px]' type='submit'>Se connecter</button> 
           </div>
         </form>
       </section> }
