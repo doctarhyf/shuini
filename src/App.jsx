@@ -106,7 +106,7 @@ function App() {
       {
         SECTIONS.MAIN_MENU  === section &&
         <section className='main-menu flex flex-row' >
-          <nav className='bg-slate-600 w-min p-4 h-screen min-h-screen'>
+          <nav className='bg-slate-600 w-min p-4 h-[100vh] min-h-[100vh]'>
             <img src={gck} width="240pt" height="120pt" />
 
             <UserBadge authStore={authStore} />

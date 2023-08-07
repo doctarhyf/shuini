@@ -7,8 +7,8 @@ export default function Loading(props){
 
     return (
         <>
-        { loading && <div>
-            <img src={load} width={30} height={30} />
+        { loading && <div className="">
+            <img className="" src={load} width={60} height={60} />
           </div> }
         </>
     )
