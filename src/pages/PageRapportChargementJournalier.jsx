@@ -5,6 +5,8 @@ import * as classes from '../helpers/classes'
 import { GetListChargement, UpdateRecord } from '../db/sb.js'
 import { CHARGEMENT_STATES, COLLECTIONS_NAMES } from '../helpers/flow'
 
+import Loading from "../comps/Loading";
+
 function RowRapportChargementJournalier(props){
 
     const { num, data, loadChargements } = props;
@@ -70,7 +72,7 @@ function RowRapportChargementJournalier(props){
 export default function PageRapportChargementJournalier(props){
   
     //const camions = new Array(20).fill(0);
-  
+    const [loading, setLoading] = useState(false);
     const [chargements, setChargements] = useState([]);
     const [dates, setDates] = useState({startDate:Date2DateInput(new Date()).split('T')[0]})
   
@@ -82,11 +84,14 @@ export default function PageRapportChargementJournalier(props){
   
     async function loadChargements(date = undefined){
       
+      setLoading(true)
       
       const d = date === undefined ? dates.startDate : date;
       const data = await GetListChargement(d);
   
       setChargements(data);
+
+      setLoading(false)
     }
   
     function onSearch(e){
@@ -126,6 +131,9 @@ export default function PageRapportChargementJournalier(props){
             </tr>
           </table>
         </div>
+
+        
+
         <div>
           <table className='text-sm'>
             <tbody>
@@ -154,6 +162,8 @@ export default function PageRapportChargementJournalier(props){
             </tbody>
           </table>
         </div>
+
+        <Loading loading={loading} />
       </>
     )
   }

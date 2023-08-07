@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-
+import Loading from "../comps/Loading";
 import * as classes from '../helpers/classes'
 import { NumDaysInMonth, GetMonthName } from "../helpers/funcs";
 import { UpdateRecord, LoadTeamsRoulement } from '../db/sb.js'
@@ -49,6 +49,7 @@ export default function PageRoulementGeneral(props){
 
     const daysOfMonth = new Array(31).fill(0);
 
+    const [loading, setLoading] = useState(true);
     const [isEditingMode, setEditingMode] = useState(false);
     const [teamsRoulement, setTeamsRoulement] = useState("A,M,M,P,P,N,N,R,R,M,M,P,P,N,N,R,R,M,M,P,P,N,N,R,R,M,M,P,P,N,N,R:B,P,P,N,N,R,R,M,M,P,P,N,N,R,R,M,M,P,P,N,N,R,R,M,M,P,P,N,N,R,M,M:C,N,N,R,R,M,M,P,P,N,N,R,R,M,M,P,P,N,N,R,R,M,M,P,P,N,N,R,M,M,P,P:D,R,R,M,M,P,P,N,N,R,R,M,M,P,P,N,N,R,R,M,M,P,P,N,N,R,M,M,P,P,N,N")
 
@@ -62,10 +63,14 @@ export default function PageRoulementGeneral(props){
     },[])
 
     async function loadTeamsRoulement(){
+
+      setLoading(true);
+
       const d = await LoadTeamsRoulement()
       
       setTeamsRoulement(d);
 
+      setLoading(false)
       
     }
 
@@ -223,6 +228,9 @@ export default function PageRoulementGeneral(props){
       
          
         </table>
+
+        <Loading loading={loading} />
+
          { isEditingMode && <div className={`text-sm style-italic text-red-white bg-red-500 p-2 rounded-md mt-2`}>
           <p>Set the 3 first days of ant team and the rest of the days will be automaticlly generated for you!</p>
         </div> }

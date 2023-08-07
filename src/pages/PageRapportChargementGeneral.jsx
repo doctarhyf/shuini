@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Date2DateInput } from '../helpers/funcs'
 import * as classes from '../helpers/classes'
 import { GetListChargement } from '../db/sb.js'
+import Loading from "../comps/Loading";
 
  function RowRapportChargementGeneral(props){
 
@@ -29,7 +30,7 @@ import { GetListChargement } from '../db/sb.js'
     let m = new Date().getMonth() ;
     let d = new Date().getDate();
     
-  
+    const [loading, setLoading] = useState(true);
     const [chargements, setChargements] = useState([]);
     const [dates, setDates] = useState({startDate: Date2DateInput(new Date(y,m,2)), endDate:Date2DateInput(new Date(y,m+1,1))})
   
@@ -44,13 +45,14 @@ import { GetListChargement } from '../db/sb.js'
     async function loadChargements(){
   
       //console.log('loading charg ...', dates)
-  
+      setLoading(true)
       setChargements([])
       let data = await GetListChargement(dates.startDate, dates.endDate);
   
       setChargements(data);
       //console.log('items => \n', data)
       //console.log('charg => \n', data);
+      setLoading(false)
     }
   
     function onSearch(e){
@@ -119,6 +121,8 @@ import { GetListChargement } from '../db/sb.js'
             }
           </table>
         </div>
+
+        <Loading loading={loading} />
       </>
     )
   }

@@ -1,7 +1,7 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import moment from "moment";
 import { LoadMonthlyStats } from '../db/sb.js'
-
+import Loading from "../comps/Loading.jsx";
 moment.locale('fr')
 
 import * as classes from '../helpers/classes'
@@ -14,8 +14,25 @@ export default function PageStats(props){
     const currentYear = new Date().getFullYear();
     const currentMont = 'January';
    
+    const [loading, setLoading] = useState(true);
     const [selectedMonth, setSelectedMonth] = useState({y:currentYear, m:currentMont});
     const [monthlyStats, setMonthlyStats] = useState([]);
+
+
+    useEffect(() => {
+
+      loadStats (); 
+
+    }, [])
+
+    function loadStats(){
+      setLoading(true);
+      const y = selectedMonth.y;
+      const m = monthsNames.indexOf(selectedMonth.m);
+     
+      LoadMonthlyStats(y, m);
+      setLoading(false);
+    }
 
     function onChange(e){
       const n = e.target.name;
@@ -28,10 +45,7 @@ export default function PageStats(props){
 
     function onFilter(e){
       e.preventDefault();
-      const y = selectedMonth.y;
-      const m = monthsNames.indexOf(selectedMonth.m);
-     
-      LoadMonthlyStats(y, m);
+      loadStats();
 
     }
  
@@ -77,6 +91,7 @@ export default function PageStats(props){
           </tr>
         </table>
 
+        <Loading loading={loading} />
         
       </>
     )
