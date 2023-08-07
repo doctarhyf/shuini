@@ -51,8 +51,8 @@ async function AddCharg(data){
         "sacs": 123,
         "t": 123,
         "harrivee": "2022-01-01 10:00:00.123Z",
-        "hdebutcharg": "2022-01-01 10:00:00.123Z",
-        "hfincharg": "2022-01-01 10:00:00.123Z",
+        "hdebutcharg": "",
+        "hfincharg": "",
         "phonechauff": "test",
         "status": "loading",
         "voie": "1"
@@ -62,8 +62,8 @@ async function AddCharg(data){
 
     let finalData = { ...schema, ...data };
     finalData.harrivee = new Date(finalData.harrivee).toISOString().replace('T', ' ');
-    finalData.hdebutcharg = new Date(finalData.hdebutcharg).toISOString().replace('T', ' ');
-    finalData.hfincharg = ''
+    finalData.hdebutcharg = finalData.hdebutcharg ?  new Date(finalData.hdebutcharg).toISOString().replace('T', ' ') : null;
+    finalData.hfincharg = null
    
     //console.log('final data => \n',finalData, '\n')
     

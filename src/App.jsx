@@ -98,7 +98,7 @@ function App() {
          
 
           <div>
-            <button disabled={phone.length < 9 || pwd.length < 6} onClick={onLogin} className='hover:bg-blue-600 disabled:text-gray-400 disabled:bg-slate-300 text-center bg-blue-700 text-white p-2 rounded-md w-min min-w-[300px]' type='submit'>Se connecter</button> 
+            <button disabled={phone.length < 9 || pwd.length < 6} onClick={onLogin} className='hover:bg-blue-600 disabled:text-gray-400 disabled:bg-slate-300 text-center bg-blue-700 text-white p-2 rounded-md w-min min-w-[230px] max-w-[230px] ' type='submit'>Se connecter</button> 
           </div>
         </form>
       </section> }

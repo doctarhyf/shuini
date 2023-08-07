@@ -37,10 +37,10 @@ export default function FormNewCharg(props){
             <button disabled={
               (inputs.plaque?.length === undefined || inputs.plaque?.length === 0) ||
               (inputs.phonechauff?.length === undefined || inputs.phonechauff?.length === 0) ||
-              (inputs.harrivee?.length === undefined || inputs.harrivee?.length === 0) ||
-              (inputs.hdebutcharg?.length === undefined || inputs.hdebutcharg?.length === 0) 
+              (inputs.harrivee?.length === undefined || inputs.harrivee?.length === 0) 
+             
               
-              }  className={`ml-0 ${classes.clbtnsm} disabled:bg-slate-400`} onClick={onSubmit} >Demarrer Charg.</button>
+              }  className={`ml-0 ${classes.clbtnsm} disabled:bg-slate-400`} onClick={onSubmit} >Ajouter Chargement</button>
             <button className={`ml-0 bg-red-600 hover:bg-red-500 ${classes.clbtnsm}`} onClick={e => props.setShowFormNewCharg(!props.showFormNewCharg)} >Annuler</button>    
         </div>
         <form className='text-black bg-white shadow-md p-2 rounded-md'>
@@ -57,7 +57,7 @@ export default function FormNewCharg(props){
           <div>
             <div className={classes.clFormLabel}>Heure debut charg.</div>
             <input className={`text-white  ${classes.clFormTextInput}`}type='datetime-local' name='hdebutcharg' value={inputs.hdebutcharg || new Date().toLocaleDateString()} onChange={onChange} />
-            { (inputs.hdebutcharg?.length === undefined || inputs.hdebutcharg?.length === 0) &&  <FormValidationMessage data={`Phone can't be empty!`} /> }
+          
           </div>
           <div>
             <div className={classes.clFormLabel}>Nombre de sacs</div>
@@ -70,7 +70,12 @@ export default function FormNewCharg(props){
           </div>
           <div>
             <div className={classes.clFormLabel}>Voie de charg.</div>
-            <input min={1} max={3} defaultValue={1} className={`text-white  ${classes.clFormTextInput}`}type='number' name='voie' value={inputs.voie || 1} onChange={onChange} />
+            {/* <input min={1} max={3} defaultValue={1} className={`text-white  ${classes.clFormTextInput}`}type='number' name='voie' value={inputs.voie || 1} onChange={onChange} /> */}
+              <select className={classes.clFormTextInput} defaultValue={3} onChange={ onChange} name="voie" value={inputs.voie || 1} >
+                <option value={1}>1</option>
+                <option value={2}>2</option>
+                <option value={3}>3</option>
+              </select>
           </div>
   
         </form>
